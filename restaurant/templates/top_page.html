@@ -3,11 +3,8 @@
 {% block title %}NAGOYAMESHI{% endblock %}
 {% block stylesheet %}
 
-<!-- ページネーション処理
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
--->
 
-<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 {% endblock %}
 {% block content %}
 
@@ -34,87 +31,98 @@
     </div>
   </div>
 
-
-  
-  <div class="bg-warning">
+  <div class="bg-dark">
     <div class="container nagoyameshi-container">
-  <h2 class="text-white catchphrase-paragraph">カテゴリから探す</h2>
-  <div class="mb-5">
-    {% for category in category_list %}
-    {% if forloop.counter < 35 %}
-    <a href="{% url 'restaurant_list' %}?category={{ category.name }}&button_type=category"  class="btn btn-outline-light btn-sm me-1 mb-2">{{ category.name }}</a>
-    {% endif %}
-    {% endfor %}
+      <h2 class="text-white catchphrase-paragraph">カテゴリから探す</h2>
+      <div class="catchphrase-paragraph mb-5">
+        {% for category in category_list %}
+        {% if forloop.counter < 35 %}
+        <a href="{% url 'restaurant_list' %}?category={{ category.name }}&button_type=category"  class="btn btn-outline-light btn-sm me-1 mb-2">{{ category.name }}</a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
   </div>
-</div>
-</div>
 
-<div class="container nagoyameshi-container">
-    {# 評価が高いお店#}
-    <h2 class="mb-3">評価が高いお店</h2>
-    <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
-      {% for restaurant,rate,rate_star in restaurant_list %}
-      <div class="col">
-        <a href="{% url 'restaurant_detail' restaurant.id %}" class="link-dark card-link">
-
-            <div class="card h-100">
-              {% if restaurant.photo %}
-              <img src="{{ restaurant.photo.url }}" class="card-img-top vertical-card-image">
-              {% endif %}
-              <div class="card-body">
-                <h3 class="card-title">{{ restaurant.name }}</h3>
-                <div class="text-muted small mb-1">
-                  <div class="d-inline-block">
-                    {{ restaurant.category }}
+  <div class="container nagoyameshi-container">
+    <div class="row">
+      {# 評価が高いお店#}
+      <div class="col-sm-5 col-md-6">
+        <div class="user-search-top-box">
+          <h2 class="text-black catchphrase">評価が高いお店</h2>
+          <hr width="100%">
+          {% for restaurant,rate,rate_star in restaurant_list %}
+          <a href="{% url 'restaurant_detail' restaurant.id %}" class="link-dark card-link">
+            <div class="card mb-3  border-white" style="max-width: 500px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  {% if restaurant.photo %}
+                  <img src="{{ restaurant.photo.url }}" class="vertical-card-image">
+                  {% endif %}
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                    <div class="text-muted small mb-1">
+                      <div class="d-inline-block">
+                        {{ restaurant.category }}
+                      </div>
+                    </div>
+                    <p class="card-text">
+                      <span class="star-rating me-1" data-rate="{{ rate_star }}"></span>
+                      {{ rate }}
+                    </p>
                   </div>
                 </div>
-                <p class="card-text">
-                  <span class="star-rating me-1" data-rate="{{ rate_star }}"></span>
-                  {{ rate }}
-                </p>
               </div>
             </div>
-        </a>
+          </a>
+          <hr width="100%">
+          {% endfor %}
+        </div>
       </div>
-      {% endfor %}
-    </div>
-  
-
-    {# 新規掲載店#}
-    <h2 class="mb-3">新規掲載店</h2>
-    <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
-      {% for new_restaurant in new_restaurant_list %}
-      <div class="col">
-        <a href="{% url 'restaurant_detail' new_restaurant.id %}" class="link-dark card-link">
-          {# <a href="{% url 'restaurant_detail' new_restaurant.id %}" class="link-dark card-link">#}
-          <div class="card h-100">
-            {% if new_restaurant.photo %}
-            <img src="{{ new_restaurant.photo.url }}" class="card-img-top vertical-card-image">
-            {% endif %}
-            <div class="card-body">
-              <h3 class="card-title">{{ new_restaurant.name }}</h3>
-              <div class="text-muted small mb-1">
-                <div class="d-inline-block">
-                  {{ new_restaurant.category }}
+    
+      {# 新規掲載店#}
+      <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+        <div class="user-search-top-box">
+          <h2 class="text-black catchphrase">新規掲載店</h2>
+          <hr width="100%">
+            {% for new_restaurant in new_restaurant_list %}
+              <a href="{% url 'restaurant_detail' new_restaurant.id %}" class="link-dark card-link">
+                <div class="card mb-3  border-white" style="max-width: 500px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      {% if new_restaurant.photo %}
+                      <img src="{{ new_restaurant.photo.url }}" class="vertical-card-image">
+                      {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ new_restaurant.name }}</h5>
+                        <div class="text-muted small mb-1">
+                          <div class="d-inline-block">
+                            {{ new_restaurant.category }}
+                          </div>
+                        </div>
+                        <p class="card-text">{{ new_restaurant.description|truncatechars:20 }}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <p class="card-text">{{ new_restaurant.description|truncatechars:20 }}</p>
-            </div>
-          </div>
-        </a>
-      </div>
-      {% endfor %}
+              </a>
+              <hr width="100%">
+            {% endfor %}
+        </div>
+      </div>     
     </div>
   </div>
 </main>
 
 {% endblock %}
 {% block js_script %}
-<!-- ページネーション処理
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
--->
 
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
 <script>
   const swiper = new Swiper('.swiper', {
     loop: true,
