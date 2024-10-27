@@ -28,11 +28,11 @@ urlpatterns = [
          views.SubscriptionGuideView.as_view(),
          name = 'subscription_guide'),
     
-     path('subscription_success',
-         views.SubscriptionsuccessView.as_view(),
-         name = 'subscription_success'),
+     path('subscription_success/',
+          views.CheckoutSuccessView.as_view(),
+          name='subscription_success'),
      
-     path('subscription_cancel',
-         views.SubscriptioncancelView.as_view(),
-         name = 'subscription_cancel'),
+     path('subscription_cancel/',
+          views.SubscriptioncancelView.as_view(),
+          name='subscription_cancel'),
 ]
