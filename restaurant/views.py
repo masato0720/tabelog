@@ -620,8 +620,6 @@ class ReviewUpdateView(generic.UpdateView):
 
 
 """ レビューの削除================================== """
-
-
 def review_delete(request):
     pk = request.GET.get("pk")
     is_success = True
@@ -634,3 +632,4 @@ def review_delete(request):
         is_success = False
 
     return JsonResponse({"is_success": is_success})
+

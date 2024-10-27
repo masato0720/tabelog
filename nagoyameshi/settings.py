@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    # stripe
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -184,3 +186,9 @@ ACCOUNT_FORMS = {
     "login": "accounts.forms.MyLoginForm",
     "signup": "accounts.forms.MySignupForm",
 }
+
+# STRIPE 追加
+STRIPE_PUBLIC_KEY = 'pk_test_51Q7aIDRx2MJlJEcGbdYSf6AhUOKJ76aUlZAJFREMp5t4GQ8le0tmvdQ59bpvYHgCgyZymJ9YBbNp2k5Jndat3v3W00Y3M3Pxlm'
+STRIPE_SECRET_KEY = 'sk_test_51Q7aIDRx2MJlJEcG7uRIFUELtzxKIDbp6r2gHR9lowv6REjJShtAIr2xXN8cxRKhp0zglKRWASROLmU1o7ow2cGQ00Cj77KZjs'
+
+YOUR_DOMAIN = 'http://127.0.0.1:8000'
