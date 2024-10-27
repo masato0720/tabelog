@@ -39,62 +39,6 @@ class UserUpdateView(generic.UpdateView):
         return super().form_invalid(form)
 
 
-class SubscribeRegisterView(View):
-    template = "subscribe/subscribe_register.html"
-
-    def get(self, request):
-        context = {}
-        return render(self.request, self.template, context)
-
-    def post(self, request):
-        user_id = request.user.id
-        card_name = request.POST.get("card_name")
-        card_number = request.POST.get("card_number")
-        correct_cord_number = "4242424242424242"
-
-        if card_number != correct_cord_number:
-            context = {"error_message": "クレジットカード番号が正しくありません"}
-            return render(self.request, self.template, context)
-
-        models.CustomUser.objects.filter(id=user_id).update(
-            is_subscribed=True, card_name=card_name, card_number=card_number
-        )
-
-        return redirect(reverse_lazy("top_page"))
-
-
-class SubscribeCancelView(generic.TemplateView):
-    template_name = "subscribe/subscribe_cancel.html"
-
-    def post(self, request):
-        user_id = request.user.id
-
-        models.CustomUser.objects.filter(id=user_id).update(is_subscribed=False)
-
-        return redirect(reverse_lazy("top_page"))
-
-
-class SubscribePaymentView(View):
-    template = "subscribe/subscribe_payment.html"
-
-    def get(self, request):
-        user_id = request.user.id
-        user = models.CustomUser.objects.get(id=user_id)
-        context = {"user": user}
-        return render(self.request, self.template, context)
-
-    def post(self, request):
-        user_id = request.user.id
-        card_name = request.POST.get("card_name")
-        card_number = request.POST.get("card_number")
-        print(card_name, card_number)
-
-        models.CustomUser.objects.filter(id=user_id).update(
-            card_name=card_name, card_number=card_number
-        )
-        return redirect(reverse_lazy("top_page"))
-
-
 
 # 管理画面 
 # ユーザー一覧画面  
@@ -184,6 +128,15 @@ class CheckoutSuccessView(View):
 # サブスク案内（有料会員以外）
 class SubscriptionGuideView(generic.TemplateView):
     template_name = "subscription/subscription_register.html"
+    
+# サブスク（支払い完了）
+class SubscriptionsuccessView(generic.TemplateView):
+    template_name = "subscription/checkout_success.html"
+    
+    
+# サブスク（キャンセル）
+class SubscriptioncancelView(generic.TemplateView):
+    template_name = "subscription/checkout_cancel.html"
 
 
 

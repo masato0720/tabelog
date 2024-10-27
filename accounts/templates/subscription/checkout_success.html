@@ -36,17 +36,7 @@
         <div class="alert alert-danger card-error" id="card-error" role="alert">
           <ul class="mb-0" id="error-list"></ul>
         </div>
-        <form id="card-form" method="post" enctype='multipart/form-data'>
-          {% csrf_token %}
-          <input class="card-holder-name mb-3" id="card-holder-name" name="card_name" type="text" placeholder="カード名義人" required>
-          <input class="card-holder-name mb-3" id="card-holder-number" name="card_number" type="text" placeholder="カード番号" required>
-          {% if error_message %}
-          <p class="text-danger">{{ error_message }}</p>
-          {% endif %}
-          <div class="d-flex justify-content-center">
-            <button class="btn btn-primary text-white shadow-sm w-50" id="card-button">変更</button>
-          </div>
-        </form>
+
       </div>
     </div>
   </div>

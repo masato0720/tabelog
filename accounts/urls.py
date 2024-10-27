@@ -8,23 +8,6 @@ urlpatterns = [
     path("user-update/<int:pk>/", views.UserUpdateView.as_view(), name="user_update"),
     
    
-    path(
-        "subscribe-register/",
-        views.SubscribeRegisterView.as_view(),
-        name="subscribe_register",
-    ),
-    path(
-        "subscribe-cancel/",
-        views.SubscribeCancelView.as_view(),
-        name="subscribe_cancel",
-    ),
-    path(
-        "subscribe-payment/",
-        views.SubscribePaymentView.as_view(),
-        name="subscribe_payment",
-    ),
-    
-
     path('management_user', 
          views.userList,
          name='management_user',
@@ -43,5 +26,13 @@ urlpatterns = [
     
     path('subscription_guide',
          views.SubscriptionGuideView.as_view(),
-         name = 'subscription_guide')
+         name = 'subscription_guide'),
+    
+     path('subscription_success',
+         views.SubscriptionsuccessView.as_view(),
+         name = 'subscription_success'),
+     
+     path('subscription_cancel',
+         views.SubscriptioncancelView.as_view(),
+         name = 'subscription_cancel'),
 ]

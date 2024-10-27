@@ -60,9 +60,9 @@
                   
                   <a class="dropdown-item" href="{% url 'favorite_list' %}">お気に入り一覧</a>
                   
-                  <a class="dropdown-item" href="{% url 'subscribe_payment' %}">お支払い方法</a>
+                  <a class="dropdown-item" href="{% url 'subscription_payment' %}">お支払い方法</a>
                   
-                  <a class="dropdown-item" href="{% url 'subscribe_cancel' %}">有料プラン解約</a>
+                  <a class="dropdown-item" href="{% url 'subscription_cancel' %}">有料プラン解約</a>
                   
                   <a class="dropdown-item" href="{% url 'management_user' %}">テスト管理画面</a>
 
@@ -79,7 +79,7 @@
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'user_detail' user.id %}">会員情報</a>
                   
-                  <a class="dropdown-item" href="{% url 'subscribe_register' %}">有料プラン登録</a>
+                  <a class="dropdown-item" href="{% url 'subscription_register' %}">有料プラン登録</a>
                   
                   <div class="dropdown-divider">
                   </div>

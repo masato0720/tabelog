@@ -29,13 +29,8 @@ class CustomUser(AbstractUser):
     
     
     # 有料会員情報
-    is_subscribed = models.BooleanField(default=False, verbose_name="有料会員")
-    card_name = models.CharField(
-        max_length=128, null=True, blank=True, verbose_name="カード名義"
-    )
-    card_number = models.CharField(
-        max_length=128, null=True, blank=True, verbose_name="カード番号"
-    )
+    subscription = models.BooleanField(default=False, verbose_name="有料会員")
+
     
     class Meta:
         verbose_name = '会員一覧'
@@ -44,17 +39,3 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
-    
-    
-    # Stripe 有料会員情報
-    """""
-    class Stripe_Customer(models.Model):
-        user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-        stripeCustomerId = models.CharField(max_length=255)
-        stripeSubscriptionId = models.CharField(max_length=255)
-        regist_date = models.DateTimeField(default=timezone.now)
-
-        def __str__(self):
-            return self.user.username
-    """
