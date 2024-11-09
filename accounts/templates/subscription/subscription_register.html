@@ -24,17 +24,12 @@
             <li class="list-group-item">・月額たったの300円</li>
           </ul>
         </div>
-        <hr class="mb-4">
-        <div class="alert alert-danger card-error" id="card-error" role="alert">
-          <ul class="mb-0" id="error-list"></ul>
-        </div>
-      
-        <form action="{% url 'subscription_register' %}" method="POST">
-          {% csrf_token %}
-          <button class="btn btn-primary text-white shadow-sm w-50" type="submit">有料プランに申し込む</button>
-        </form>
-
-        
+        <div class="mb-3 text-center">
+          <form action="{% url 'subscription_register' %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-primary text-white shadow-sm w-50" type="submit">有料プランに申し込む</button>
+          </form>
+        </div>      
       </div>
     </div>
   </div>

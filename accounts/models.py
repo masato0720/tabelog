@@ -27,7 +27,6 @@ class CustomUser(AbstractUser):
     job = models.CharField(max_length=255, null=True, blank=True, verbose_name="職業")
 
     
-    
     # 有料会員情報
     subscription = models.BooleanField(default=False, verbose_name="有料会員")
 

@@ -90,18 +90,13 @@ class CreateCheckoutSessionView(LoginRequiredMixin, View):
                 },
             ],
             mode='subscription',
-            success_url=f"{settings.YOUR_DOMAIN}/checkout_success/?session_id={{CHECKOUT_SESSION_ID}}&user_id={request.user.id}",
-            cancel_url=f"{settings.YOUR_DOMAIN}/checkout_cancel/",
+            success_url=f"{settings.YOUR_DOMAIN}/accounts/checkout_success/?session_id={{CHECKOUT_SESSION_ID}}&user_id={request.user.id}",
+            cancel_url=f"{settings.YOUR_DOMAIN}/accounts/checkout_cancel/",
         )   
         return redirect(checkout_session.url, code=303)
     
     def get(self, request, *args, **kwargs):
         return render(request, 'subscription/subscription_register.html')
-    
-    #successの戻るurls.pyを作成する
-    #cancelの戻るurls.pyを作成する
-    #gitにアップして先生にコードを見てもらう
-    #管理画面のログインは管理者フラグがデフォルトであるのでそれを活用する。
 
 
 # 支払い成功（会員のみ）
@@ -135,7 +130,6 @@ class SubscriptionGuideView(generic.TemplateView):
 # サブスク（支払い完了）
 class SubscriptionsuccessView(generic.TemplateView):
     template_name = "subscription/checkout_success.html"
-    
     
 # サブスク（キャンセル）
 class SubscriptioncancelView(generic.TemplateView):
