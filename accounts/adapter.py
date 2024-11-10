@@ -11,5 +11,5 @@ class AccountAdapter(DefaultAccountAdapter):
         user.phone_number = form.cleaned_data.get("phone_number")
         user.birthday = form.cleaned_data.get("birthday")
         user.job = form.cleaned_data.get("job")
-        user.is_subscribed = form.cleaned_data.get("is_subscribed")
+        user.subscription = form.cleaned_data.get("subscription")
         user.save()

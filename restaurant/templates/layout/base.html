@@ -48,7 +48,7 @@
             <ul class="navbar-nav ms-auto">
 
               <!-- Authentication Links -->
-              {% if user.is_subscribed %}
+              {% if user.subscription %}
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                   {{ user.user_name }}
@@ -60,7 +60,7 @@
                   
                   <a class="dropdown-item" href="{% url 'favorite_list' %}">お気に入り一覧</a>
                   
-                  <a class="dropdown-item" href="{% url 'subscription_payment' %}">お支払い方法</a>
+                  <a class="dropdown-item" href="">お支払い方法</a>
                   
                   <a class="dropdown-item" href="{% url 'subscription_cancel' %}">有料プラン解約</a>
                   

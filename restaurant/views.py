@@ -131,7 +131,7 @@ class RestaurantDetailView(generic.DetailView):
         if not user.is_authenticated:
             return redirect(reverse_lazy("account_login"))
 
-        if not user.is_subscribed:
+        if not user.subscription:
             return redirect(reverse_lazy("subscribe_register"))
 
         pk = kwargs["pk"]
@@ -341,13 +341,13 @@ class ReservationCreateView(generic.CreateView):
     def get(self, request, **kwargs):
         user = request.user
 
-        if user.is_authenticated and user.is_subscribed:
+        if user.is_authenticated and user.subscription:
             return super().get(request, **kwargs)
 
         if not user.is_authenticated:
             return redirect(reverse_lazy("account_login"))
 
-        if not user.is_subscribed:
+        if not user.subscription:
             return redirect(reverse_lazy("subscribe_register"))
 
     def form_valid(self, form):
@@ -515,13 +515,13 @@ class ReviewCreateView(generic.CreateView):
     def get(self, request, **kwargs):
         user = request.user
 
-        if user.is_authenticated and user.is_subscribed:
+        if user.is_authenticated and user.subscription:
             return super().get(request, **kwargs)
 
         if not user.is_authenticated:
             return redirect(reverse_lazy("account_login"))
 
-        if not user.is_subscribed:
+        if not user.subscription:
             return redirect(reverse_lazy("subscribe_register"))
 
     def form_valid(self, form):
