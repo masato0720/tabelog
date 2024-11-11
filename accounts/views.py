@@ -1,3 +1,4 @@
+from django.http import HttpRequest
 import stripe
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,6 +14,9 @@ from . import forms, models
 from . models import CustomUser
 from restaurant.models import Restaurant
 from restaurant.models import Category
+
+from .mixins import OnlyManagementUserMixin
+
 
 
 
@@ -51,7 +55,8 @@ def userList(request):
     }
     return render(request,'management/management_user.html',params)   
 
-# 店舗一覧画面  
+# 店舗一覧画面 
+'''
 def shopList(request):
     deta = Restaurant.objects.all()
     params = {
@@ -60,6 +65,19 @@ def shopList(request):
        'data': deta,
     }
     return render(request,'management/management_shop.html',params)  
+'''
+class ShopList(OnlyManagementUserMixin, generic.TemplateView):
+    template_name = 'management/management_shop.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context["title"] = "店舗管理"
+        context["message"] = "all shop"
+        context["data"] = Restaurant.objects.all()
+        
+        return context
+    
 
 # カテゴリー一覧画面  
 def categoryList(request):

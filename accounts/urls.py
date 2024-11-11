@@ -13,7 +13,7 @@ urlpatterns = [
          name='management_user',
     ),
     path('management_shop', 
-         views.shopList,
+         views.ShopList.as_view(),
          name='management_shop',
     ),
     path('management_category', 
