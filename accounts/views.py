@@ -44,28 +44,22 @@ class UserUpdateView(generic.UpdateView):
 
 
 
-# 管理画面 
-# ユーザー一覧画面  
-def userList(request):
-    deta = models.CustomUser.objects.all()
-    params = {
-       'title': '会員管理',
-       'message': 'all user',
-       'data': deta,
-    }
-    return render(request,'management/management_user.html',params)   
 
-# 店舗一覧画面 
-'''
-def shopList(request):
-    deta = Restaurant.objects.all()
-    params = {
-       'title': '店舗管理',
-       'message': 'all shop',
-       'data': deta,
-    }
-    return render(request,'management/management_shop.html',params)  
-'''
+# 管理者画面（ユーザー一覧画面）
+class UserList(OnlyManagementUserMixin, generic.TemplateView):
+    template_name = 'management/management_user.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context["title"] = "会員管理"
+        context["message"] = "all user"
+        context["data"] = CustomUser.objects.all()
+        
+        return context
+    
+    
+# 管理者画面（店舗一覧画面）
 class ShopList(OnlyManagementUserMixin, generic.TemplateView):
     template_name = 'management/management_shop.html'
     
@@ -79,15 +73,18 @@ class ShopList(OnlyManagementUserMixin, generic.TemplateView):
         return context
     
 
-# カテゴリー一覧画面  
-def categoryList(request):
-    deta = Category.objects.all()
-    params = {
-       'title': 'カテゴリー管理',
-       'message': 'all category',
-       'data': deta,
-    }
-    return render(request,'management/management_category.html',params)  
+# 管理者画面（カテゴリー一覧画面）
+class CategoryList(OnlyManagementUserMixin, generic.TemplateView):
+    template_name = 'management/management_category.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context["title"] = "カテゴリー管理"
+        context["message"] = "all category"
+        context["data"] = Restaurant.objects.all()
+        
+        return context
 
     
     

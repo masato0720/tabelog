@@ -9,7 +9,7 @@ urlpatterns = [
     
    
     path('management_user', 
-         views.userList,
+         views.UserList.as_view(),
          name='management_user',
     ),
     path('management_shop', 
@@ -17,7 +17,7 @@ urlpatterns = [
          name='management_shop',
     ),
     path('management_category', 
-         views.categoryList,
+         views.CategoryList.as_view(),
          name='management_category',
     ),
     path('subscription_register',
