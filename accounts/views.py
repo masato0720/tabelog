@@ -16,9 +16,7 @@ from restaurant.models import Restaurant
 from restaurant.models import Category
 
 from .mixins import OnlyManagementUserMixin
-
-
-
+        
 
 """ 会員情報================================== """
 class UserDetailView(generic.DetailView):
