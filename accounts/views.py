@@ -105,8 +105,8 @@ class CreateCheckoutSessionView(LoginRequiredMixin, View):
                 },
             ],
             mode='subscription',
-            success_url=f"{settings.YOUR_DOMAIN}/accounts/checkout_success/?session_id={{CHECKOUT_SESSION_ID}}&user_id={request.user.id}",
-            cancel_url=f"{settings.YOUR_DOMAIN}/accounts/checkout_cancel/",
+            success_url=f"{settings.YOUR_DOMAIN}/accounts/subscription_success/?session_id={{CHECKOUT_SESSION_ID}}&user_id={request.user.id}",
+            cancel_url=f"{settings.YOUR_DOMAIN}/accounts/subscription_cancel/",
         )   
         return redirect(checkout_session.url, code=303)
     
