@@ -1,0 +1,65 @@
+
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 240px;
+  box-sizing: border-box;
+  }
+
+
+.nagoyameshi-logo {
+  height: 70px;
+}
+
+.app-name {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-size: 35px;
+  color: #191919;
+}
+
+
+footer {
+  width: 100%;
+  height: 240px;
+  position: absolute;
+  bottom: 0;
+  padding: 50px 15px;
+}
+
+.footer-logo {
+  margin-bottom: 20px;
+}
+
+.footer-link {
+  margin-bottom: 30px;
+}
+
+
+.users-table {
+  word-break: break-all;
+}
+
+.terms h2 {
+  font-size: 1.125rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.375rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+

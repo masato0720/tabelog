@@ -13,9 +13,9 @@ class Command(BaseCommand):
         """本文"""
         message = "本文です¥nこんにちは。メールを送信しました"
         """送信元メールアドレス"""
-        from_email = "xxxxxx"
+        from_email = "masato1904@gmail.com"
         """宛先メールアドレス"""
         recipient_list = [
-            "xxxxxxx"
+            "masato1904@gmail.com"
         ]
         send_mail(subject, message, from_email, recipient_list)

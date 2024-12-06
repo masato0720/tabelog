@@ -44,9 +44,12 @@ class UserUpdateView(generic.UpdateView):
 
 
 # 管理者画面（ユーザー一覧画面）
-class UserList(OnlyManagementUserMixin, generic.TemplateView):
+class UserList(OnlyManagementUserMixin, generic.ListView):
     template_name = 'management/management_user.html'
+    model = CustomUser
+    paginate_by = 5
     
+ 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
@@ -55,6 +58,7 @@ class UserList(OnlyManagementUserMixin, generic.TemplateView):
         context["data"] = CustomUser.objects.all()
         
         return context
+
     
     
 # 管理者画面（店舗一覧画面）

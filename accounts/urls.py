@@ -12,6 +12,7 @@ urlpatterns = [
          views.UserList.as_view(),
          name='management_user',
     ),
+
     path('management_shop', 
          views.ShopList.as_view(),
          name='management_shop',
