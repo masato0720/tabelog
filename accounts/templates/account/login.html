@@ -7,6 +7,7 @@
   <div class="container py-4 nagoyameshi-container">
     <div class="row justify-content-center">
       <div class="col-xl-3 col-lg-4 col-md-5 col-sm-7">
+
         <h1 class="mb-4 text-center">ログイン</h1>
         <form method="post" action="{% url 'account_login' %}">
 
@@ -38,7 +39,10 @@
         <hr class="my-4">
         <div class="text-center">
           <a href="{% url 'account_signup' %}">新規会員登録はこちら</a>
+          <br>
+          <a href="{% url 'account_reset_password' %}">パスワードを忘れた方はこちら</a>
         </div>
+
       </div>
     </div>
   </div>
