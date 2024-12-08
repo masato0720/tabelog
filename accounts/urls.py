@@ -12,6 +12,12 @@ urlpatterns = [
 
     path('management_shop', views.ShopList.as_view(),name='management_shop',),
     
+    path('management_shop_form', views.ShopCreateView.as_view(), name="management_shop_form"),
+    
+    path('management_shop_update_form/<int:pk>', views.ShopUpdateView.as_view(), name="management_shop_update_form"),
+    
+    path('management_shop_confirm_delete/<int:pk>', views.ShopDeleteView.as_view(), name="management_shop_confirm_delete"),
+    
     path('management_category', views.CategoryList.as_view(),name='management_category',),
     
     path('subscription_register',

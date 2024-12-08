@@ -2,6 +2,8 @@ import datetime
 
 from django.db import models
 
+from django.urls import reverse
+
 from accounts.models import CustomUser
 
 
@@ -47,6 +49,10 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return self.name
+    
+    # 新規作成・編集完了時のリダイレクト先
+    def get_absolute_url(self):
+        return reverse('management_shop')
 
 
 class Reservation(models.Model):

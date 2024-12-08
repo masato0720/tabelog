@@ -1,0 +1,60 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}NAGOYAMESHI{% endblock %}
+{% block content %}
+
+<style>
+  .signup label {
+    min-width: 150px;
+  }
+
+  .signup input {
+    display: inline-block;
+    width: 300px;
+  }
+</style>
+
+<main>
+  <br>
+  <div class="container nagoyameshi-container pb-5">
+    <div class="row justify-content-center">
+      <div class="col-xl-3 col-lg-4 col-md-12">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            管理メニュー
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <a class="dropdown-item" href="{% url 'management_user' %}">会員管理</a>
+            </li>
+            <li class="list-group-item">
+              <a class="dropdown-item" href="{% url 'management_shop' %}">店舗管理</a>
+            </li>
+            <li class="list-group-item">
+              <a class="dropdown-item" href="{% url 'management_category' %}">カテゴリー管理</a>
+            </li>
+          </ul>
+        </div> 
+      </div>
+
+      <div class="col">
+        <div class="d-flex justify-content-between flex-wrap">
+ 
+          <form class="signup" method="post">
+            <h1>削除</h1>
+            {% csrf_token %}
+            以下の商品を削除してもよろしいですか？<br>
+            {{ object }}<br>
+            <a href="{% url 'management_shop' %}">戻る</a>
+            <input type="submit" class="btn btn-danger" value="削除">
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+
+

@@ -10,6 +10,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View, generic
 from django.views.generic import TemplateView, ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from . import forms, models
 from . models import CustomUser
@@ -60,12 +61,21 @@ class ShopList(OnlyManagementUserMixin, ListView):
     model = Restaurant
     paginate_by = 10
     
-    #def get_context_data(self, **kwargs):
-        #context = super().get_context_data(**kwargs)
-        #context["title"] = "店舗管理"
-        #context["message"] = "all shop"
-        #context["data"] = Restaurant.objects.all()
-        #return context
+class ShopCreateView(OnlyManagementUserMixin, CreateView):
+    template_name = 'management/management_shop_form.html'
+    model = Restaurant
+    fields = '__all__'
+    
+class ShopUpdateView(OnlyManagementUserMixin, UpdateView):
+    template_name = 'management/management_shop_update_form.html'
+    model = Restaurant
+    fields = '__all__'
+    
+class ShopDeleteView(OnlyManagementUserMixin, DeleteView):
+    template_name = 'management/management_shop_confirm_delete.html'
+    model = Restaurant
+    success_url = reverse_lazy('management_shop')
+    
 
 """管理者画面（カテゴリー一覧画面）================================== """
 class CategoryList(OnlyManagementUserMixin, ListView):
