@@ -31,22 +31,44 @@
             <thead>
               <tr>
                 <th scope="col">管理番号</th>
-                <th scope="col">メールアドレス</th>
                 <th scope="col">名前</th>
+                <th scope="col">メールアドレス</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
               <tr>
-                {% for item in data %}
+                {% for CustomUser in object_list %}
                
-                <th scope="row">{{ item.id }}</th>
-                <td>{{ item.user_name }}</td>
-                <td>{{ item.email }}</td>
+                <th scope="row">{{ CustomUser.id }}</th>
+                <td>{{ CustomUser.user_name }}</td>
+                <td>{{ CustomUser.email }}</td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
+
+          <p class="text-center">
+            {# ページの表示 #}
+            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} ページ<br>
+          </p>
+ 
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              {# 前へ #}
+              {% if page_obj.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page=1">&laquo; 先頭</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">前へ</a></li>
+              {% endif %}
+ 
+              {# 次へ #}
+              {% if page_obj.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">次へ</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">最後 &raquo;</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+
       </div>
     </div>
   </div>

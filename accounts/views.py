@@ -9,6 +9,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 
 from django.urls import reverse_lazy
 from django.views import View, generic
+from django.views.generic import TemplateView, ListView
 
 from . import forms, models
 from . models import CustomUser
@@ -40,58 +41,46 @@ class UserUpdateView(generic.UpdateView):
     def form_invalid(self, form):
         return super().form_invalid(form)
 
-
-
-
-# 管理者画面（ユーザー一覧画面）
-class UserList(OnlyManagementUserMixin, generic.ListView):
+"""管理者画面（ユーザー一覧画面）================================== """
+class UserList(OnlyManagementUserMixin, ListView):
     template_name = 'management/management_user.html'
     model = CustomUser
-    paginate_by = 5
+    paginate_by = 10
     
- 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        
-        context["title"] = "会員管理"
-        context["message"] = "all user"
-        context["data"] = CustomUser.objects.all()
-        
-        return context
-
+    #def get_context_data(self, **kwargs):
+       # context = super().get_context_data(**kwargs)
+       # context["title"] = "会員管理"
+       # context["message"] = "all user"
+       # context["data"] = CustomUser.objects.all()
+       # return context
     
-    
-# 管理者画面（店舗一覧画面）
-class ShopList(OnlyManagementUserMixin, generic.TemplateView):
+"""管理者画面（店舗一覧画面）================================== """
+class ShopList(OnlyManagementUserMixin, ListView):
     template_name = 'management/management_shop.html'
+    model = Restaurant
+    paginate_by = 10
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        
-        context["title"] = "店舗管理"
-        context["message"] = "all shop"
-        context["data"] = Restaurant.objects.all()
-        
-        return context
-    
+    #def get_context_data(self, **kwargs):
+        #context = super().get_context_data(**kwargs)
+        #context["title"] = "店舗管理"
+        #context["message"] = "all shop"
+        #context["data"] = Restaurant.objects.all()
+        #return context
 
-# 管理者画面（カテゴリー一覧画面）
-class CategoryList(OnlyManagementUserMixin, generic.TemplateView):
+"""管理者画面（カテゴリー一覧画面）================================== """
+class CategoryList(OnlyManagementUserMixin, ListView):
     template_name = 'management/management_category.html'
+    model = Category
+    paginate_by = 10
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        
-        context["title"] = "カテゴリー管理"
-        context["message"] = "all category"
-        context["data"] = Restaurant.objects.all()
-        
-        return context
+    #def get_context_data(self, **kwargs):
+        #context = super().get_context_data(**kwargs)
+        #context["title"] = "カテゴリー管理"
+        #context["message"] = "all category"
+        #context["data"] = Restaurant.objects.all()
+        #return context   
 
-    
-    
-
-# Stripe APIキーを設定
+"""Stripe APIキーを設定================================== """
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Stripeの支払いview
