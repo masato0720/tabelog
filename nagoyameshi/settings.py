@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     # stripe
     'stripe',
+    # filters
+    'django_filters',
 ]
 
 MIDDLEWARE = [

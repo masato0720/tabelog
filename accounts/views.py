@@ -17,6 +17,8 @@ from . models import CustomUser
 from restaurant.models import Restaurant
 from restaurant.models import Category
 
+from .filters import ShopFilter
+
 from .mixins import OnlyManagementUserMixin
         
 
@@ -48,12 +50,12 @@ class UserList(OnlyManagementUserMixin, ListView):
     model = CustomUser
     paginate_by = 10
     
-    #def get_context_data(self, **kwargs):
-       # context = super().get_context_data(**kwargs)
-       # context["title"] = "会員管理"
-       # context["message"] = "all user"
-       # context["data"] = CustomUser.objects.all()
-       # return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["filter"] = ShopFilter(self.request.GET,
+                queryset=self.get_queryset())
+        return context
+
     
 """管理者画面（店舗一覧画面）================================== """
 class ShopList(OnlyManagementUserMixin, ListView):

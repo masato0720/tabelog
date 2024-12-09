@@ -27,13 +27,6 @@
       </div>
       <div class="col">
         <div class="d-flex justify-content-between flex-wrap">
-
-          <form method="get">
-            {% csrf_token %}
-            {{ filter.form.as_p }}
-            <input type="submit" />
-          </form>
-
           <table class="table">
             <thead>
               <tr>
@@ -44,14 +37,13 @@
             </thead>
             <tbody class="table-group-divider">
               <tr>
-                {% for obj in filter.qs %}
+                {% for CustomUser in object_list %}
                
-                <th scope="row">{{ obj.id }}</th>
-                <td>{{ obj.user_name }}</td>
-                <td>{{ obj.email }}</td>
+                <th scope="row">{{ CustomUser.id }}</th>
+                <td>{{ CustomUser.user_name }}</td>
+                <td>{{ CustomUser.email }}</td>
               </tr>
               {% endfor %}
-
             </tbody>
           </table>
         </div>
