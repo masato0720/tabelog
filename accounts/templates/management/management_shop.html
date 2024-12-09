@@ -28,8 +28,6 @@
       <div class="col">
         <div class="d-flex justify-content-between flex-wrap">
 
-          <a href="{% url 'management_shop_form' %}">新規作成</a>
-
           <table class="table">
             <thead>
               <tr>
@@ -37,7 +35,11 @@
                 <th scope="col">店舗名</th>
                 <th scope="col">郵便番号</th>
                 <th scope="col">住所</th>
-                <th>アクション</th>
+                <th>
+                  <div class="text-center">
+                    <button class="btn btn-outline-secondary"  onclick="location.href='{% url 'management_shop_form' %}'"> 新 規 作 成 </button>
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -48,8 +50,10 @@
                 <td>{{ Restaurant.zip_code }}</td>
                 <td>{{ Restaurant.address }}</td>
                 <td>
-                  <button class="btn btn-primary" onclick="location.href='{% url 'management_shop_update_form' pk=Restaurant.pk %}'">編集</button>
-                  <button class="btn btn-danger" onclick="location.href='{% url 'management_shop_confirm_delete' pk=Restaurant.pk %}'">削除</button>
+                  <div class="text-center">
+                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_shop_update_form' pk=Restaurant.pk %}'">編集</button>
+                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_shop_confirm_delete' pk=Restaurant.pk %}'">削除</button>
+                  </div>
                 </td>
               </tr>
               {% endfor %}
