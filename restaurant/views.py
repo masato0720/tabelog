@@ -124,7 +124,7 @@ class RestaurantDetailView(generic.DetailView):
             return redirect(reverse_lazy("account_login"))
 
         if not user.subscription:
-            return redirect(reverse_lazy("subscribe_register"))
+            return redirect(reverse_lazy("subscription_register"))
 
         pk = kwargs["pk"]
         is_favorite = (
@@ -334,7 +334,7 @@ class ReservationCreateView(generic.CreateView):
             return redirect(reverse_lazy("account_login"))
 
         if not user.subscription:
-            return redirect(reverse_lazy("subscribe_register"))
+            return redirect(reverse_lazy("subscription_register"))
 
     def form_valid(self, form):
         user_instance = self.request.user
@@ -502,7 +502,7 @@ class ReviewCreateView(generic.CreateView):
             return redirect(reverse_lazy("account_login"))
 
         if not user.subscription:
-            return redirect(reverse_lazy("subscribe_register"))
+            return redirect(reverse_lazy("subscription_register"))
 
     def form_valid(self, form):
         user_instance = self.request.user
