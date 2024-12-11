@@ -24,6 +24,16 @@
             </li>
           </ul>
         </div> 
+
+        <br>
+        <form method="get">
+          {% csrf_token %}
+          {{ filter.form.as_p }}
+          <div class="d-flex justify-content-end">
+            <input class="btn btn-outline-secondary"  type="submit" value="search" >
+          </div>
+        </form>
+
       </div>
       <div class="col">
         <div class="d-flex justify-content-between flex-wrap">
@@ -42,14 +52,14 @@
             </thead>
             <tbody class="table-group-divider">
               <tr>
-                {% for Category in object_list %}
-                <th scope="row"  class="align-middle">{{ Category.id }}</th>
-                <td class="align-middle">{{ Category.name }}</td>
-                <td class="align-middle">{{ Category.photo }}</td>
+                {% for obj in filter.qs %}
+                <th scope="row"  class="align-middle">{{ obj.id }}</th>
+                <td class="align-middle">{{ obj.name }}</td>
+                <td class="align-middle">{{ obj.photo }}</td>
                 <td class="align-middle">
                   <div class="text-center">
-                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_category_update_form' pk=Category.pk %}'">編集</button>
-                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_category_confirm_delete' pk=Category.pk %}'">削除</button>
+                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_category_update_form' pk=obj.pk %}'">編集</button>
+                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_category_confirm_delete' pk=obj.pk %}'">削除</button>
                   </div>
                 </td>
               </tr>

@@ -24,6 +24,16 @@
             </li>
           </ul>
         </div> 
+
+        <br>
+        <form method="get">
+          {% csrf_token %}
+          {{ filter.form.as_p }}
+          <div class="d-flex justify-content-end">
+            <input class="btn btn-outline-secondary"  type="submit" value="search" >
+          </div>
+        </form>
+
       </div>
       <div class="col">
         <div class="d-flex justify-content-between flex-wrap">
@@ -44,15 +54,15 @@
             </thead>
             <tbody class="table-group-divider">
               <tr>
-                {% for Restaurant in object_list %}
-                <th scope="row">{{ Restaurant.id }}</th>
-                <td>{{ Restaurant.name }}</td>
-                <td>{{ Restaurant.zip_code }}</td>
-                <td>{{ Restaurant.address }}</td>
+                {% for obj in filter.qs %}
+                <th scope="row">{{ obj.id }}</th>
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.zip_code }}</td>
+                <td>{{ obj.address }}</td>
                 <td>
                   <div class="text-center">
-                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_shop_update_form' pk=Restaurant.pk %}'">編集</button>
-                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_shop_confirm_delete' pk=Restaurant.pk %}'">削除</button>
+                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_shop_update_form' pk=obj.pk %}'">編集</button>
+                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_shop_confirm_delete' pk=obj.pk %}'">削除</button>
                   </div>
                 </td>
               </tr>

@@ -18,7 +18,7 @@ from . models import CustomUser
 from restaurant.models import Restaurant
 from restaurant.models import Category
 
-from .filters import ShopFilter
+from .filters import CustomUserFilter, RestaurantFilter, CategoryFilter
 
 from .mixins import OnlyManagementUserMixin
         
@@ -54,7 +54,7 @@ class UserList(OnlyManagementUserMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["filter"] = ShopFilter(self.request.GET,
+        context["filter"] = CustomUserFilter(self.request.GET,
                 queryset=self.get_queryset())
         return context
     
@@ -63,6 +63,12 @@ class ShopList(OnlyManagementUserMixin, ListView):
     template_name = 'management/management_shop.html'
     model = Restaurant
     paginate_by = 10
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["filter"] = RestaurantFilter(self.request.GET,
+                queryset=self.get_queryset())
+        return context
     
 class ShopCreateView(OnlyManagementUserMixin, CreateView):
     template_name = 'management/management_shop_form.html'
@@ -85,6 +91,12 @@ class CategoryList(OnlyManagementUserMixin, ListView):
     template_name = 'management/management_category.html'
     model = Category
     paginate_by = 10
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["filter"] = CategoryFilter(self.request.GET,
+                queryset=self.get_queryset())
+        return context
     
 class CategoryCreateView(OnlyManagementUserMixin, CreateView):
     template_name = 'management/management_Category_form.html'
