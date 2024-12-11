@@ -6,12 +6,13 @@ from django.http.response import HttpResponse
 
 from django.shortcuts import redirect, render, get_object_or_404
 
-
 from django.urls import reverse_lazy
 from django.views import View, generic
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+
+# 定義したモデルの読み込み
 from . import forms, models
 from . models import CustomUser
 from restaurant.models import Restaurant
@@ -48,6 +49,7 @@ class UserUpdateView(generic.UpdateView):
 class UserList(OnlyManagementUserMixin, ListView):
     template_name = 'management/management_user.html'
     model = CustomUser
+    context_object_name = 'results'
     paginate_by = 10
     
     def get_context_data(self, **kwargs):
@@ -55,7 +57,6 @@ class UserList(OnlyManagementUserMixin, ListView):
         context["filter"] = ShopFilter(self.request.GET,
                 queryset=self.get_queryset())
         return context
-
     
 """管理者画面（店舗一覧画面）================================== """
 class ShopList(OnlyManagementUserMixin, ListView):
@@ -85,12 +86,20 @@ class CategoryList(OnlyManagementUserMixin, ListView):
     model = Category
     paginate_by = 10
     
-    #def get_context_data(self, **kwargs):
-        #context = super().get_context_data(**kwargs)
-        #context["title"] = "カテゴリー管理"
-        #context["message"] = "all category"
-        #context["data"] = Restaurant.objects.all()
-        #return context   
+class CategoryCreateView(OnlyManagementUserMixin, CreateView):
+    template_name = 'management/management_Category_form.html'
+    model = Category
+    fields = '__all__'
+    
+class CategoryUpdateView(OnlyManagementUserMixin, UpdateView):
+    template_name = 'management/management_Category_update_form.html'
+    model = Category
+    fields = '__all__'
+    
+class CategoryDeleteView(OnlyManagementUserMixin, DeleteView):
+    template_name = 'management/management_Category_confirm_delete.html'
+    model = Category
+    success_url = reverse_lazy('management_category') 
 
 """Stripe APIキーを設定================================== """
 stripe.api_key = settings.STRIPE_SECRET_KEY

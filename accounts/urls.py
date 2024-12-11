@@ -24,6 +24,12 @@ urlpatterns = [
     
     path('management_category', views.CategoryList.as_view(),name='management_category',),
     
+    path('management_category_form', views.CategoryCreateView.as_view(), name="management_category_form"),
+    
+    path('management_category_update_form/<int:pk>', views.CategoryUpdateView.as_view(), name="management_category_update_form"),
+    
+    path('management_category_confirm_delete/<int:pk>', views.CategoryDeleteView.as_view(), name="management_category_confirm_delete"),
+    
     path('subscription_register',
          views.CreateCheckoutSessionView.as_view(),
          name='subscription_register'),

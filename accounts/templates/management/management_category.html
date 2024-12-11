@@ -33,14 +33,25 @@
                 <th scope="col">管理番号</th>
                 <th scope="col">カテゴリー</th>
                 <th scope="col">写真</th>
+                <th>
+                  <div class="text-center">
+                    <button class="btn btn-outline-secondary"  onclick="location.href='{% url 'management_category_form' %}'"> 新 規 作 成 </button>
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
               <tr>
                 {% for Category in object_list %}
-                <th scope="row">{{ Category.id }}</th>
-                <td>{{ Category.name }}</td>
-                <td>{{ Category.photo }}</td>
+                <th scope="row"  class="align-middle">{{ Category.id }}</th>
+                <td class="align-middle">{{ Category.name }}</td>
+                <td class="align-middle">{{ Category.photo }}</td>
+                <td class="align-middle">
+                  <div class="text-center">
+                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_category_update_form' pk=Category.pk %}'">編集</button>
+                    <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_category_confirm_delete' pk=Category.pk %}'">削除</button>
+                  </div>
+                </td>
               </tr>
               {% endfor %}
             </tbody>

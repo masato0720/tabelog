@@ -24,15 +24,18 @@
             </li>
           </ul>
         </div> 
+        <br>
+        <form method="get">
+          {% csrf_token %}
+          {{ filter.form.as_p }}
+          <div class="d-flex justify-content-end">
+            <input class="btn btn-outline-secondary"  type="submit" value="search" >
+          </div>
+        </form>
+
       </div>
       <div class="col">
         <div class="d-flex justify-content-between flex-wrap">
-
-          <form method="get">
-            {% csrf_token %}
-            {{ filter.form.as_p }}
-            <input type="submit" />
-          </form>
 
           <table class="table">
             <thead>
@@ -44,7 +47,7 @@
             </thead>
             <tbody class="table-group-divider">
               <tr>
-                {% for obj in filter.qs %}
+               {% for obj in filter.qs %}
                
                 <th scope="row">{{ obj.id }}</th>
                 <td>{{ obj.user_name }}</td>
