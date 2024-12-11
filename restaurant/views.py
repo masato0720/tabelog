@@ -9,8 +9,6 @@ from django.views import generic
 from . import forms, models
 
 """ トップ画面================================== """
-
-
 class TopPageView(generic.ListView):
     template_name = "top_page.html"
     model = models.Restaurant
@@ -66,22 +64,16 @@ class TopPageView(generic.ListView):
 
 
 """ 会社概要================================== """
-
-
 class CompanyView(generic.TemplateView):
     template_name = "layout/company.html"
 
 
 """ 利用規約================================== """
-
-
 class TermsView(generic.TemplateView):
     template_name = "layout/terms.html"
 
 
 """ レストラン詳細画面================================== """
-
-
 class RestaurantDetailView(generic.DetailView):
     template_name = "restaurant/restaurant_detail.html"
     model = models.Restaurant
@@ -181,8 +173,6 @@ class RestaurantDetailView(generic.DetailView):
 
 
 """ レストラン一覧画面================================== """
-
-
 class RestaurantListView(generic.ListView):
     template_name = "restaurant_list.html"
     model = models.Restaurant
@@ -302,8 +292,6 @@ class RestaurantListView(generic.ListView):
 
 
 """ お気に入り一覧画面================================== """
-
-
 class FavoriteListView(generic.ListView):
     model = models.Favorite
     template_name = "favorite/favorite_list.html"
@@ -330,8 +318,6 @@ def favorite_delete(request):
 
 
 """ 新規予約登録画面================================== """
-
-
 class ReservationCreateView(generic.CreateView):
     template_name = "reservation/reservation_create.html"
     model = models.Reservation
@@ -416,8 +402,6 @@ class ReservationCreateView(generic.CreateView):
 
 
 """ 予約一覧表示画面================================== """
-
-
 class ReservationListView(generic.ListView):
     model = models.Reservation
     template_name = "reservation/reservation_list.html"
@@ -440,8 +424,6 @@ class ReservationListView(generic.ListView):
 
 
 """ 予約の削除================================== """
-
-
 def reservation_delete(request):
     pk = request.GET.get("pk")
     is_success = True
@@ -457,8 +439,6 @@ def reservation_delete(request):
 
 
 """ レビューの一覧表示================================== """
-
-
 class ReviewListView(generic.ListView):
     template_name = "review/review_list.html"
     model = models.Review
@@ -570,8 +550,6 @@ class ReviewCreateView(generic.CreateView):
 
 
 """ レビューの更新================================== """
-
-
 class ReviewUpdateView(generic.UpdateView):
     model = models.Review
     template_name = "review/review_update.html"

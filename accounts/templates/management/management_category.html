@@ -3,6 +3,7 @@
 {% block title %}NAGOYAMESHI{% endblock %}
 {% block content %}
 
+
 <main>
   <br>
   <div class="container nagoyameshi-container pb-5">
@@ -55,7 +56,7 @@
                 {% for obj in filter.qs %}
                 <th scope="row"  class="align-middle">{{ obj.id }}</th>
                 <td class="align-middle">{{ obj.name }}</td>
-                <td class="align-middle">{{ obj.photo }}</td>
+                <td class="align-middle">{{ obj.photo }} </td>
                 <td class="align-middle">
                   <div class="text-center">
                     <button class="btn btn-outline-secondary" onclick="location.href='{% url 'management_category_update_form' pk=obj.pk %}'">編集</button>

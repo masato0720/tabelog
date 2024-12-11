@@ -46,12 +46,14 @@
 
   <div class="container nagoyameshi-container">
     <div class="row">
+
       {# 評価が高いお店#}
       <div class="col-sm-5 col-md-6">
         <div class="user-search-top-box">
           <h2 class="text-black catchphrase">評価が高いお店</h2>
           <hr width="100%">
           {% for restaurant,rate,rate_star in restaurant_list %}
+          {% if forloop.counter <= 5 %}
           <a href="{% url 'restaurant_detail' restaurant.id %}" class="link-dark card-link">
             <div class="card mb-3  border-white" style="max-width: 500px;">
               <div class="row g-0">
@@ -78,6 +80,7 @@
             </div>
           </a>
           <hr width="100%">
+          {% endif %}
           {% endfor %}
         </div>
       </div>
@@ -88,6 +91,7 @@
           <h2 class="text-black catchphrase">新規掲載店</h2>
           <hr width="100%">
             {% for new_restaurant in new_restaurant_list %}
+            {% if forloop.counter <= 5 %}
               <a href="{% url 'restaurant_detail' new_restaurant.id %}" class="link-dark card-link">
                 <div class="card mb-3  border-white" style="max-width: 500px;">
                   <div class="row g-0">
@@ -111,6 +115,7 @@
                 </div>
               </a>
               <hr width="100%">
+              {% endif %}
             {% endfor %}
         </div>
       </div>     
