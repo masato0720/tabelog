@@ -174,7 +174,11 @@ class SubscriptionsuccessView(generic.TemplateView):
 class SubscriptioncancelView(generic.TemplateView):
     template_name = "subscription/checkout_cancel.html"
 
-
+    def post(self, request):
+        user_id = request.user.id
+        
+        models.CustomUser.objects.filter(id=user_id).update(subscription=False)
+        return redirect(reverse_lazy('top_page'))
 
 
     

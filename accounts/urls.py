@@ -10,8 +10,6 @@ urlpatterns = [
     
     path("user-update/<int:pk>/", views.UserUpdateView.as_view(), name="user_update"),
     
-    #path('management_user', views.UserList.as_view(),name='management_user',),
-    
     path("management_user", views.UserList.as_view(model=CustomUser), name="management_user"),
 
     path('management_shop', views.ShopList.as_view(),name='management_shop',),
