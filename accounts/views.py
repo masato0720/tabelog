@@ -116,7 +116,8 @@ class CategoryDeleteView(OnlyManagementUserMixin, DeleteView):
 """Stripe APIキーを設定================================== """
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-# Stripeの支払いview
+
+"""Stripeの支払いview================================== """
 class CreateCheckoutSessionView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         # YOUR_DOMAINが開発環境と本番環境で変わるようにsettings.pyに記述
@@ -138,7 +139,7 @@ class CreateCheckoutSessionView(LoginRequiredMixin, View):
         return render(request, 'subscription/subscription_register.html')
 
 
-# 支払い成功（会員のみ）
+"""支払い成功（会員のみ）================================== """
 class CheckoutSuccessView(View):
     def get(self, request, *args, **kwargs):    
         session_id = request.GET.get('session_id')
@@ -161,16 +162,15 @@ class CheckoutSuccessView(View):
         return render(request, 'subscription/subscription_register.html')
     
 
-
-# サブスク案内（有料会員以外）
+"""サブスク案内（有料会員以外）================================== """
 class SubscriptionGuideView(generic.TemplateView):
     template_name = "subscription/subscription_register.html"
     
-# サブスク（支払い完了）
+"""サブスク（支払い完了）================================== """
 class SubscriptionsuccessView(generic.TemplateView):
     template_name = "subscription/checkout_success.html"
     
-# サブスク（キャンセル）
+"""サブスク（キャンセル）================================== """
 class SubscriptioncancelView(generic.TemplateView):
     template_name = "subscription/checkout_cancel.html"
 
