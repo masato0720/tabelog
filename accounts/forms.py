@@ -12,7 +12,6 @@ class MySignupForm(SignupForm):
     phone_number = forms.CharField(max_length=255, label="電話番号")
     birthday = forms.CharField(max_length=255, label="誕生日")
     job = forms.CharField(max_length=255, label="職業")
-    # subscription = forms.BooleanField(required=False)
 
     def __init__(self, *args, **kwargs):
         super(MySignupForm, self).__init__(*args, **kwargs)
@@ -62,6 +61,7 @@ class MySignupForm(SignupForm):
         user.phone_number = self.cleaned_data["phone_number"]
         user.birthday = self.cleaned_data["birthday"]
         user.job = self.cleaned_data["job"]
+        user.subscription = False
         user.save()
         return user
 

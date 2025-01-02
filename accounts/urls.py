@@ -28,19 +28,13 @@ urlpatterns = [
     
     path('management_category_confirm_delete/<int:pk>', views.CategoryDeleteView.as_view(), name="management_category_confirm_delete"),
     
-    path('subscription_register',
-         views.CreateCheckoutSessionView.as_view(),
-         name='subscription_register'),
+    path('subscription_register', views.CreateCheckoutSessionView.as_view(), name='subscription_register'),
     
-    path('subscription_guide',
-         views.SubscriptionGuideView.as_view(),
-         name = 'subscription_guide'),
+    path('subscription_guide', views.SubscriptionGuideView.as_view(), name = 'subscription_guide'),
     
-     path('subscription_success/',
-          views.CheckoutSuccessView.as_view(),
-          name='subscription_success'),
+     path('subscription_success/', views.CheckoutSuccessView.as_view(), name='subscription_success'),
      
-     path('subscription_cancel/',
-          views.SubscriptioncancelView.as_view(),
-          name='subscription_cancel'),
+     path('subscription_cancel/', views.SubscriptioncancelView.as_view(), name='subscription_cancel'),
+     
+     path("subscribe-payment/", views.SubscribePaymentView.as_view(), name="subscribe_payment"),
 ]

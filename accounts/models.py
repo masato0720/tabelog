@@ -28,7 +28,9 @@ class CustomUser(AbstractUser):
 
     
     # 有料会員情報
-    subscription = models.BooleanField(default=False, verbose_name="有料会員")
+    subscription = models.BooleanField(null=True, default=False, verbose_name="有料会員")
+    card_name = models.CharField(max_length=128, null=True, blank=True,verbose_name='カード名義')
+    card_number = models.CharField(max_length=128, null=True, blank=True,verbose_name='カード番号')
 
     
     class Meta:

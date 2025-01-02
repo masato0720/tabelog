@@ -46,6 +46,7 @@ class UserUpdateView(generic.UpdateView):
         return super().form_invalid(form)
 
 """管理者画面（ユーザー一覧画面）================================== """
+
 class UserList(OnlyManagementUserMixin, ListView):
     template_name = 'management/management_user.html'
     model = CustomUser
@@ -57,6 +58,7 @@ class UserList(OnlyManagementUserMixin, ListView):
         context["filter"] = CustomUserFilter(self.request.GET,
                 queryset=self.get_queryset())
         return context
+    
     
 """管理者画面（店舗一覧画面）================================== """
 class ShopList(OnlyManagementUserMixin, ListView):
@@ -157,6 +159,8 @@ class CheckoutSuccessView(View):
         # ユーザーの subscription 項目を更新
         user = get_object_or_404(CustomUser, id=user_id)
         user.subscription = True
+        user.card_name  = user.hurigana
+        user.card_number  = '4242424242424242'
         user.save()
         
         return render(request, 'subscription/subscription_register.html')
@@ -179,7 +183,26 @@ class SubscriptioncancelView(generic.TemplateView):
         
         models.CustomUser.objects.filter(id=user_id).update(subscription=False)
         return redirect(reverse_lazy('top_page'))
-
+    
+"""サブスク（クレジット情報の編集）================================== """
+class SubscribePaymentView(View):
+    template = 'subscription/subscribe_payment.html'
+    
+    def get(self, request):
+        user_id = request.user.id
+        user = models.CustomUser.objects.get(id=user_id)
+        context = {'user': user}
+        return render(self.request, self.template, context)
+    
+    def post(self, request):
+        user_id = request.user.id
+        card_name = request.POST.get('card_name')
+        card_number = request.POST.get('card_number')
+        print(card_name, card_number)
+        
+        models.CustomUser.objects.filter(id=user_id).update(card_name=card_name, card_number=card_number)
+        
+        return redirect(reverse_lazy('top_page'))
 
     
 

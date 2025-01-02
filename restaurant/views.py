@@ -223,9 +223,15 @@ class RestaurantListView(generic.ListView):
             | Q(address__icontains=keyword_session)
             | Q(category__name__icontains=keyword_session)
         )
+        '''
         restaurant_list = restaurant_list.filter(
             category__name__icontains=category_session
         )
+         '''
+        if button_type == "category":
+            restaurant_list = restaurant_list.filter(
+            category__name__iexact=category_session
+            )
 
         if int(price_session) > 0:
             restaurant_data = models.Restaurant.objects.values("id", "price")

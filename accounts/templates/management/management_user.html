@@ -33,6 +33,7 @@
           </div>
         </form>
 
+
       </div>
       <div class="col">
         <div class="d-flex justify-content-between flex-wrap">
@@ -55,31 +56,10 @@
               </tr>
               {% endfor %}
 
+
             </tbody>
           </table>
         </div>
-
-          <p class="text-center">
-            {# ページの表示 #}
-            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} ページ<br>
-          </p>
- 
-          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              {# 前へ #}
-              {% if page_obj.has_previous %}
-              <li class="page-item"><a class="page-link" href="?page=1">&laquo; 先頭</a></li>
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">前へ</a></li>
-              {% endif %}
- 
-              {# 次へ #}
-              {% if page_obj.has_next %}
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">次へ</a></li>
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">最後 &raquo;</a></li>
-              {% endif %}
-            </ul>
-          </nav>
-
       </div>
     </div>
   </div>

@@ -25,12 +25,14 @@
           <li class="nav-item">
             <a class="nav-link active bg-primary text-white" aria-current="page" href="{% url 'restaurant_detail' object.id %}">トップ</a>
           </li>
+          {% if user.subscription %}
           <li class="nav-item">
             <a class="nav-link link-dark" href="{% url 'reservation_create' object.id %}">予約</a>
           </li>
           <li class="nav-item">
             <a class="nav-link link-dark" href="{% url 'review_list' object.id %}">レビュー</a>
           </li>
+          {% endif %}
         </ul>
         <div class="mb-2">
           {% if object.photo %}
@@ -114,6 +116,7 @@
                 </div>
               </div>
             </div>
+            {% if user.subscription %}
             <form method="POST" enctype="multipart/form-data" class="text-center">
               {% csrf_token %}
               {% if is_favorite %}
@@ -126,6 +129,7 @@
               </button>
               {% endif %}
             </form>
+            {% endif %}
         </div>
       </div>
     </div>

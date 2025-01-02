@@ -145,7 +145,7 @@ a {
   width: 150px;
 }
 
-/* æ˜Ÿè©•ä¾¡ */
+
 .star-rating {
   position: relative;
   z-index: 0;
@@ -226,22 +226,22 @@ a {
   .admin-content {margin: 0;}
 }
 
-/* flatpickrã®åoeŸæ›oeæ—¥ã®è‰² */
+
 .flatpickr-weekday:nth-child(7),
 .flatpickr-days
 .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n) {color: #0421D9;}
 
-/* flatpickrã®æ—¥æ›oeæ—¥ã®è‰² */
+
 .flatpickr-weekday:nth-child(7n + 1),
 .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n + 1) {color: #D90421;}
 
-/* flatpickrã®é¸æŠžã•ã‚OEãŸæ—¥ä»˜ã®è‰² */
+
 .flatpickr-day.selected {
   background: #D95204 !important;
   border-color: #D95204 !important;
 }
 
-/* ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã‚«ãƒ¼ãƒ‰ç•ªå·å…¥åŠ›ãƒ•ã‚©ãƒ¼ãƒ */
+
 .card-holder-name,
 .card-element {
   border-radius: .375rem;
